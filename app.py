@@ -46,7 +46,7 @@ with st.sidebar:
             if uploaded_file is not None:
                 df = pd.read_csv(uploaded_file)
             else:
-                df = pd.read_csv("src\call_notes.csv")
+                df = pd.read_csv("src/call_notes.csv")
                 st.toast("No file uploaded. Using default demo dataset.")
                 
             raw_notes = df.to_dict('records')
