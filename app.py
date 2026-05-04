@@ -51,8 +51,9 @@ with st.sidebar:
                 
             raw_notes = df.to_dict('records')
             st.write("Processed rows:", len(raw_notes))
-            st.write("Sample output:", results["processed_notes"][:2])
+            
             results = asyncio.run(process_all_notes(raw_notes))
+            st.write("Sample output:", results["processed_notes"][:2])
             
             st.session_state.processed_data = results
             st.session_state.analysis_complete = True
