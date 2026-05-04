@@ -87,7 +87,8 @@ else:
     deteriorating_hcps = len([h for h, j in data["hcp_journeys"].items() if j.get("is_deteriorating")])
     coaching_reps = len([r for r, s in data["rep_summaries"].items() if s["needs_coaching"]])
     
-    kpi1.metric("Unread Notes Processed", "524", "100% Coverage")
+    coverage = f"{round((len(data['processed_notes']) / len(raw_notes)) * 100)}% Coverage"
+    kpi1.metric("Unread Notes Processed", str(len(data["processed_notes"])), coverage)
     kpi2.metric("Critical AE Flags", str(ae_count), "-1 from last week", delta_color="inverse")
     kpi3.metric("Deteriorating HCPs", str(deteriorating_hcps), "High Churn Risk", delta_color="inverse")
     kpi4.metric("Reps Requiring Coaching", str(coaching_reps))
