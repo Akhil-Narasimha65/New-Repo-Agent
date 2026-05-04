@@ -1,4 +1,6 @@
+streamlit
+google-genai>=1.0.0
 langgraph==1.1.10
-pandas==3.0.2
-protobuf==7.34.1
-python-dotenv==1.2.2
+pandas
+protobuf
+python-dotenv
