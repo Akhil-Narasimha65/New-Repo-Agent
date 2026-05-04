@@ -31,5 +31,6 @@ async def call_agent_json(system_prompt: str, note_text: str) -> dict:
         return json.loads(response.text)
         
     except Exception as e:
-        print(f"Error calling Gemini LLM: {e}")
+        import streamlit as st
+        st.error(f"Gemini Error: {e}")
         return {}
