@@ -50,6 +50,8 @@ with st.sidebar:
                 st.toast("No file uploaded. Using default demo dataset.")
                 
             raw_notes = df.to_dict('records')
+            st.write("Processed rows:", len(raw_notes))
+            st.write("Sample output:", results["processed_notes"][:2])
             results = asyncio.run(process_all_notes(raw_notes))
             
             st.session_state.processed_data = results
