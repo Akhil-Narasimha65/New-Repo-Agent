@@ -50,9 +50,11 @@ with st.sidebar:
                 st.toast("No file uploaded. Using default demo dataset.")
                 
             raw_notes = df.to_dict('records')
-            st.write("Processed rows:", len(raw_notes))
+            st.session_state.raw_notes = raw_notes
+            
             
             results = asyncio.run(process_all_notes(raw_notes))
+            st.write("Processed rows:", len(raw_notes))
             st.write("Sample output:", results["processed_notes"][:2])
             
             st.session_state.processed_data = results
@@ -87,7 +89,7 @@ else:
     deteriorating_hcps = len([h for h, j in data["hcp_journeys"].items() if j.get("is_deteriorating")])
     coaching_reps = len([r for r, s in data["rep_summaries"].items() if s["needs_coaching"]])
     
-    coverage = f"{round((len(data['processed_notes']) / len(raw_notes)) * 100)}% Coverage"
+    coverage = f"{round((len(data['processed_notes']) / len(st.session_state.raw_notes)) * 100)}% Coverage"
     kpi1.metric("Unread Notes Processed", str(len(data["processed_notes"])), coverage)
     kpi2.metric("Critical AE Flags", str(ae_count), "-1 from last week", delta_color="inverse")
     kpi3.metric("Deteriorating HCPs", str(deteriorating_hcps), "High Churn Risk", delta_color="inverse")
