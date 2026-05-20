@@ -19,7 +19,7 @@ async def call_agent_json(system_prompt: str, note_text: str) -> dict:
 
         # Call the API asynchronously using the locally scoped client
         response = await client.aio.models.generate_content(
-            model="gemini-2.5-flash", 
+            model="gemini-3.1-pro-preview", 
             contents=f"Call Note:\n{note_text}",
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt,
